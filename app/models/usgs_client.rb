@@ -38,6 +38,7 @@ class UsgsClient
       state = get_state_from_place(attributes['place'])
       return {
         id: id,
+        mag: attributes['mag'],
         place: attributes['place'],
         state: state,
         time: attributes['time'],

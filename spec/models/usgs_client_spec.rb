@@ -99,6 +99,10 @@ RSpec.describe UsgsClient, type: :model do
         expect(subject).to include(tz: properties['tz'])
       end
 
+      it 'should return mag' do
+        expect(subject).to include(mag: properties['mag'])
+      end
+
       it 'should return state' do
         place = properties['place']
         expect(parser).to receive(:get_state_from_place).with(place).and_return 'CA'
