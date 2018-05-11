@@ -24,9 +24,12 @@ RSpec.describe UsgsClient, type: :model do
   describe '#fetch_data' do
     let(:uri) { URI(client.api_uri) }
     subject { client.fetch_data }
+    let(:parser_mock) { double(UsgsClient::DataParser, data: data) }
+    let(:data) { [{id: 1}, {id: 2}, {id: 3}] }
 
     before(:each ) do
       allow(Net::HTTP).to receive(:get).and_return response
+      allow(UsgsClient::DataParser).to receive(:new).and_return parser_mock
     end
 
     it 'should do http get request' do
@@ -35,9 +38,16 @@ RSpec.describe UsgsClient, type: :model do
     end
 
     it 'should parse response into JSON' do
+      expect(JSON).to receive(:parse).with(response).and_call_original
       subject
-      expect(client.json).to eql(json_response)
     end
+
+    it 'should use UsgsClient::DataParser to process data' do
+      expect(UsgsClient::DataParser).to receive(:new).with(json_response)
+      subject
+    end
+
+    it { is_expected.to eq(data) }
   end
 
   describe UsgsClient::DataParser do
@@ -45,12 +55,23 @@ RSpec.describe UsgsClient, type: :model do
     let(:features_count) { json_response['features'].count }
     let(:feature) { json_response['features'][0] }
 
+    describe '#initialize' do
+      let(:data) { [{id: 1}, {id: 2}, {id: 3}] }
+
+      subject { parser }
+
+      it 'should process data' do
+        expect_any_instance_of(UsgsClient::DataParser).to receive(:process_data)
+        subject
+      end
+    end
+
     describe '#process_data' do
       before(:each) do
-        allow(parser).to receive(:process_feature).and_return true
+        allow_any_instance_of(UsgsClient::DataParser).to receive(:process_feature).and_return true
       end
 
-      subject { parser.process_data }
+      subject { parser.process_data(json_response) }
 
       it 'processes features from dataset' do
         expect(parser).to receive(:process_feature).exactly(features_count).times

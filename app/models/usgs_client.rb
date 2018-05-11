@@ -1,7 +1,7 @@
 class UsgsClient
 
   attr_reader :api_uri
-  attr_accessor :json
+  attr_accessor :data
 
   def initialize
     @api_uri = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
@@ -11,7 +11,8 @@ class UsgsClient
     # get data from remote api
     response = Net::HTTP.get(URI(api_uri))
     # parse response
-    self.json = JSON.parse(response)
+    parser = UsgsClient::DataParser.new(JSON.parse(response))
+    self.data = parser.data
   end
 
   class DataParser
@@ -20,13 +21,13 @@ class UsgsClient
     # information we need: id, mag, place, time, tz
     FEATURE_ATTRIBUTES = ['mag', 'place', 'time', 'tz']
 
-    def initialize(data={})
-      @data = data
+    def initialize(json={})
+      process_data(json)
     end
 
-    def process_data
-      features = data['features'] || []
-      features.each do |feature|
+    def process_data(json)
+      features = json['features'] || []
+      self.data = features.map do |feature|
         process_feature(feature)
       end
     end
