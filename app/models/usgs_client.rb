@@ -35,18 +35,18 @@ class UsgsClient
     def process_feature(feature = {})
       id = feature['id']
       attributes = feature['properties'].slice(*FEATURE_ATTRIBUTES)
-      state = get_state_from_place(attributes['place'])
+      city = get_city_from_place(attributes['place'])
       return {
         id: id,
         mag: attributes['mag'],
         place: attributes['place'],
-        state: state,
+        city: city,
         time: attributes['time'],
         tz: attributes['tz'],
       }
     end
 
-    def get_state_from_place(place)
+    def get_city_from_place(place)
       place.match(/,\s(.*)$/) { |m| m[1] }
     end
   end

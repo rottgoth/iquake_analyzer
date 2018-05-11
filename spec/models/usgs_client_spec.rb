@@ -103,28 +103,28 @@ RSpec.describe UsgsClient, type: :model do
         expect(subject).to include(mag: properties['mag'])
       end
 
-      it 'should return state' do
+      it 'should return city' do
         place = properties['place']
-        expect(parser).to receive(:get_state_from_place).with(place).and_return 'CA'
-        expect(subject).to include(state: 'CA')
+        expect(parser).to receive(:get_city_from_place).with(place).and_return 'CA'
+        expect(subject).to include(city: 'CA')
       end
     end
 
-    describe '#get_state_from_place' do
+    describe '#get_city_from_place' do
       let(:place) { feature['properties']['place'] } # "15km SW of Leilani Estates, Hawaii"
-      subject { parser.get_state_from_place(place) }
+      subject { parser.get_city_from_place(place) }
 
       it { is_expected.to eql('Hawaii') }
 
-      it 'should get the state' do
-        state = parser.get_state_from_place("15km SW of Leilani Estates, Hawaii")
-        expect(state).to eql('Hawaii')
+      it 'should get the city' do
+        city = parser.get_city_from_place("15km SW of Leilani Estates, Hawaii")
+        expect(city).to eql('Hawaii')
 
-        state = parser.get_state_from_place("9km NE of Aguanga, CA")
-        expect(state).to eql('CA')
+        city = parser.get_city_from_place("9km NE of Aguanga, CA")
+        expect(city).to eql('CA')
 
-        state = parser.get_state_from_place("90km NW of Talkeetna, Alaska")
-        expect(state).to eql('Alaska')
+        city = parser.get_city_from_place("90km NW of Talkeetna, Alaska")
+        expect(city).to eql('Alaska')
       end
     end
 
