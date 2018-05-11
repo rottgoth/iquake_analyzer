@@ -1,1 +1,141 @@
-"{\"type\":\"FeatureCollection\",\"metadata\":{\"generated\":1525920830000,\"url\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson\",\"title\":\"USGS All Earthquakes, Past Month\",\"status\":200,\"api\":\"1.5.8\",\"count\":11052},\"features\":[{\"type\":\"Feature\",\"properties\":{\"mag\":2.46,\"place\":\"15km SW of Leilani Estates, Hawaii\",\"time\":1525920463130,\"updated\":1525920799430,\"tz\":-600,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/hv70135861\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/hv70135861.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":93,\"net\":\"hv\",\"code\":\"70135861\",\"ids\":\",hv70135861,\",\"sources\":\",hv,\",\"types\":\",geoserve,origin,phase-data,\",\"nst\":31,\"dmin\":0.0411,\"rms\":0.36,\"gap\":192,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 2.5 - 15km SW of Leilani Estates, Hawaii\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-155.0373383,19.381834,3.66]},\"id\":\"hv70135861\"},\n{\"type\":\"Feature\",\"properties\":{\"mag\":2.16,\"place\":\"9km NE of Aguanga, CA\",\"time\":1525920084420,\"updated\":1525920783740,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/ci38169824\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci38169824.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":72,\"net\":\"ci\",\"code\":\"38169824\",\"ids\":\",ci38169824,\",\"sources\":\",ci,\",\"types\":\",focal-mechanism,geoserve,nearby-cities,origin,phase-data,scitech-link,\",\"nst\":78,\"dmin\":0.08325,\"rms\":0.21,\"gap\":28,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 2.2 - 9km NE of Aguanga, CA\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-116.8035,33.503,2.86]},\"id\":\"ci38169824\"},\n{\"type\":\"Feature\",\"properties\":{\"mag\":0.24,\"place\":\"9km NE of Aguanga, CA\",\"time\":1525919938560,\"updated\":1525920149150,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/ci38169816\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci38169816.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":1,\"net\":\"ci\",\"code\":\"38169816\",\"ids\":\",ci38169816,\",\"sources\":\",ci,\",\"types\":\",geoserve,nearby-cities,origin,phase-data,scitech-link,\",\"nst\":11,\"dmin\":0.07794,\"rms\":0.12,\"gap\":104,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 0.2 - 9km NE of Aguanga, CA\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-116.7965,33.505,6.38]},\"id\":\"ci38169816\"}],\"bbox\":[-179.9739,-61.4122,-3.43,179.9797,79.401,638.26]}"
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated": 1525920830000,
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+    "title": "USGS All Earthquakes, Past Month",
+    "status": 200,
+    "api": "1.5.8",
+    "count": 11052
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 2.46,
+        "place": "15km SW of Leilani Estates, Hawaii",
+        "time": 1525920463130,
+        "updated": 1525920799430,
+        "tz": -600,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv70135861",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/hv70135861.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 93,
+        "net": "hv",
+        "code": "70135861",
+        "ids": ",hv70135861,",
+        "sources": ",hv,",
+        "types": ",geoserve,origin,phase-data,",
+        "nst": 31,
+        "dmin": 0.0411,
+        "rms": 0.36,
+        "gap": 192,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 2.5 - 15km SW of Leilani Estates, Hawaii"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.0373383,
+          19.381834,
+          3.66
+        ]
+      },
+      "id": "hv70135861"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 2.16,
+        "place": "9km NE of Aguanga, CA",
+        "time": 1525920084420,
+        "updated": 1525920783740,
+        "tz": -480,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci38169824",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci38169824.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 72,
+        "net": "ci",
+        "code": "38169824",
+        "ids": ",ci38169824,",
+        "sources": ",ci,",
+        "types": ",focal-mechanism,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 78,
+        "dmin": 0.08325,
+        "rms": 0.21,
+        "gap": 28,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 2.2 - 9km NE of Aguanga, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.8035,
+          33.503,
+          2.86
+        ]
+      },
+      "id": "ci38169824"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 0.24,
+        "place": "9km NE of Aguanga, CA",
+        "time": 1525919938560,
+        "updated": 1525920149150,
+        "tz": -480,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci38169816",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci38169816.geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "automatic",
+        "tsunami": 0,
+        "sig": 1,
+        "net": "ci",
+        "code": "38169816",
+        "ids": ",ci38169816,",
+        "sources": ",ci,",
+        "types": ",geoserve,nearby-cities,origin,phase-data,scitech-link,",
+        "nst": 11,
+        "dmin": 0.07794,
+        "rms": 0.12,
+        "gap": 104,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 0.2 - 9km NE of Aguanga, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.7965,
+          33.505,
+          6.38
+        ]
+      },
+      "id": "ci38169816"
+    }
+  ],
+  "bbox": [
+    -179.9739,
+    -61.4122,
+    -3.43,
+    179.9797,
+    79.401,
+    638.26
+  ]
+}
