@@ -7,8 +7,9 @@ class IquakeAnalyzer
   end
 
   def list_california_earthquakes
+    # alternative approach
+    # data.group_by { |earthquake| earthquake[:city] }['CA']
     data.select { |earthquake| earthquake[:city] == 'CA' }
         .sort { |a, b| b[:mag] <=> a[:mag] }
   end
-
 end
