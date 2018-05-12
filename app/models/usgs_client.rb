@@ -36,18 +36,24 @@ class UsgsClient
       id = feature['id']
       attributes = feature['properties'].slice(*FEATURE_ATTRIBUTES)
       city = get_city_from_place(attributes['place'])
+      happened_at = get_utc_date_from_epoc_miliseconds(attributes['time'])
+
       return {
-        id: id,
-        mag: attributes['mag'],
+        usgs_id: id,
+        magnitude: attributes['mag'],
         place: attributes['place'],
         city: city,
-        time: attributes['time'],
-        tz: attributes['tz'],
+        happened_at: happened_at,
+        timezone: attributes['tz'],
       }
     end
 
     def get_city_from_place(place)
       place.match(/,\s(.*)$/) { |m| m[1] }
+    end
+
+    def get_utc_date_from_epoc_miliseconds(time)
+      Time.at(time / 1000.0).utc
     end
   end
 end

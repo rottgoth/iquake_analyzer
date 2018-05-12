@@ -84,23 +84,25 @@ RSpec.describe UsgsClient, type: :model do
       let(:properties) { feature['properties'] }
 
       it 'should return id' do
-        expect(subject).to include(id: feature['id'])
+        expect(subject).to include(usgs_id: feature['id'])
       end
 
       it 'should return place' do
         expect(subject).to include(place: properties['place'])
       end
 
-      it 'should return time' do
-        expect(subject).to include(time: properties['time'])
+      it 'should return happened_at' do
+        time = properties['time']
+        expect(parser).to receive(:get_utc_date_from_epoc_miliseconds).with(time).and_return 'Today'
+        expect(subject).to include(happened_at: 'Today')
       end
 
-      it 'should return tz' do
-        expect(subject).to include(tz: properties['tz'])
+      it 'should return timezone' do
+        expect(subject).to include(timezone: properties['tz'])
       end
 
-      it 'should return mag' do
-        expect(subject).to include(mag: properties['mag'])
+      it 'should return magnitude' do
+        expect(subject).to include(magnitude: properties['mag'])
       end
 
       it 'should return city' do
@@ -128,5 +130,14 @@ RSpec.describe UsgsClient, type: :model do
       end
     end
 
+    describe '#get_utc_date_from_epoc_miliseconds' do
+      let(:time) { feature['properties']['time'] }
+      subject { parser.get_utc_date_from_epoc_miliseconds(time) }
+
+      it 'should return happened_at (time converted to UTC datetime)' do
+        datetime = Time.at(time/1000.0).utc
+        expect(subject).to eql(datetime)
+      end
+    end
   end
 end
