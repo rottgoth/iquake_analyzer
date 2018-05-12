@@ -21,6 +21,18 @@ class IquakeAnalyzer
       end
   end
 
+  def format_earthquake_record(record)
+    # time comes in miliseconds, Time.at requires seconds
+    date = Time.at(record[:time] / 1000.0).utc
+    date = date.strftime("%Y-%m-%dT%H:%M:%S%:z")
+
+    place = record[:place].gsub('CA', 'California')
+
+    mag = "Magnitude: #{record[:mag]}"
+
+    [date, place, mag].join("\t|\t")
+  end
+
   private
   def data_by_city
     @data_by_city ||= data.group_by { |earthquake| earthquake[:city] }

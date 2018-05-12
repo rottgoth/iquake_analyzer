@@ -120,4 +120,64 @@ RSpec.describe IquakeAnalyzer, type: :model do
 
     # it 'should only include us cities'
   end
+
+  describe '#format_earthquake_record' do
+    let(:record) do
+      {
+        id: "ci38167848",
+        mag: 4.49,
+        place: "11km N of Cabazon, CA",
+        city: "CA",
+        time: 1525780174020,
+        tz: -480
+      }
+    end
+    let(:formated_earthquake_record) { "2018-05-08T11:49:34+00:00\t|\t11km N of Cabazon, California\t|\tMagnitude: 4.49" }
+
+    subject { analyzer.format_earthquake_record(record) }
+
+    it "should return the proper formatted record" do
+      expect(subject).to eql(formated_earthquake_record)
+    end
+
+    context 'date/time' do
+      it 'should print the date/time properly (UTC): "2018-05-08T11:49:34+00:00"' do
+        expect(subject).to start_with("2018-05-08T11:49:34+00:00")
+      end
+
+      it 'should format any date with this format "%Y-%m-%dT%H:%M:%S%:z"' do
+        record[:time] = 1525737064070
+        formatted_date = Time.at(record[:time]/1000.0).utc.strftime("%Y-%m-%dT%H:%M:%S%:z")
+        actual = analyzer.format_earthquake_record(record)
+        expect(actual).to start_with(formatted_date)
+
+        record[:time] = 1525921110910
+        formatted_date = Time.at(record[:time]/1000.0).utc.strftime("%Y-%m-%dT%H:%M:%S%:z")
+        actual = analyzer.format_earthquake_record(record)
+        expect(actual).to start_with(formatted_date)
+      end
+    end
+
+    context 'place' do
+      it 'should print the place properly (replacing CA for California)' do
+        expect(subject).to include('11km N of Cabazon, California')
+      end
+
+      it 'should format any place' do
+        record[:place] = '9km SW of Leilani Estates, Hawaii'
+        expect(subject).to include('9km SW of Leilani Estates, Hawaii')
+      end
+    end
+
+    context 'magnitude' do
+      it 'should include "Magnitude: 4.49"' do
+        expect(subject).to end_with('Magnitude: 4.49')
+      end
+
+      it 'should format any mag' do
+        record[:mag] = 0.84
+        expect(subject).to end_with('Magnitude: 0.84')
+      end
+    end
+  end
 end
