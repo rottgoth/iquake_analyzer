@@ -48,6 +48,12 @@ RSpec.describe Earthquake, type: :model do
       expect(earthquake.errors.messages).to include(happened_at: ["can't be blank"])
     end
 
+    it 'should be invalid without a timezone' do
+      earthquake.timezone = nil
+      expect(earthquake).not_to be_valid
+      expect(earthquake.errors.messages).to include(timezone: ["can't be blank"])
+    end
+
     it 'should be invalid without a magnitude' do
       earthquake.magnitude = nil
       expect(earthquake).not_to be_valid

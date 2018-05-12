@@ -1,24 +1,22 @@
 class IquakeAnalyzer
 
-  attr_reader :data
-
   def initialize
-    @data = UsgsClient.new.fetch_data
   end
 
   def list_california_earthquakes
-    sort_earthquakes data_by_city['CA']
+    Earthquake.in('CA').sorted
   end
 
   def list_top_us_cities_earthquakes
-    data_by_city
-      .sort { |a, b| b.last.count <=> a.last.count } # sort cities by highest earthquakes count
-      .take(3) # take the first 3 cities (this could be parameterized)
-      .reduce([]) do |acc, current_city|
-        # sort earthquakes by mag within each city anc join them in the same loop
-        city, earthquakes = current_city
-        acc.concat sort_earthquakes(earthquakes)
-      end
+    cities = Earthquake.select("*, COUNT(city)")
+                       .group('city')
+                       .order("count(city) desc")
+                       .limit(3)
+                       .pluck(:city)
+
+    cities.reduce([]) do |acc, current_city|
+      acc.concat(Earthquake.in(current_city).sorted)
+    end
   end
 
   def print_formatted_list(list)
@@ -26,13 +24,11 @@ class IquakeAnalyzer
   end
 
   def format_earthquake_record(record)
-    # time comes in miliseconds, Time.at requires seconds
-    date = Time.at(record[:time] / 1000.0).utc
-    date = date.strftime("%Y-%m-%dT%H:%M:%S%:z")
+    date = record.happened_at.strftime("%Y-%m-%dT%H:%M:%S%:z")
 
-    place = record[:place].gsub('CA', 'California')
+    place = record.place.gsub('CA', 'California')
 
-    mag = "Magnitude: #{record[:mag]}"
+    mag = "Magnitude: #{record.magnitude}"
 
     [date, place, mag].join("\t|\t")
   end
