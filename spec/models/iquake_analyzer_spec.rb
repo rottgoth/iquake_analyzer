@@ -55,6 +55,10 @@ RSpec.describe IquakeAnalyzer, type: :model do
 
     subject { analyzer.list_california_earthquakes }
 
+    before(:each) do
+      allow(analyzer).to receive(:print_formatted_list).with(data) { data }
+    end
+
     it 'should exclude non ca records' do
       expect(subject).not_to include(*non_ca_records)
     end
@@ -178,6 +182,33 @@ RSpec.describe IquakeAnalyzer, type: :model do
         record[:mag] = 0.84
         expect(subject).to end_with('Magnitude: 0.84')
       end
+    end
+  end
+
+  describe '#print_formatted_list' do
+    let(:list) { (1..10).to_a }
+
+    subject { analyzer.print_formatted_list(list) }
+
+    before(:each) do
+      list.each do |item|
+        allow(analyzer).to receive(:puts)
+        allow(analyzer).to receive(:format_earthquake_record).with(item).and_return item.to_s
+      end
+    end
+
+    it 'should call format_earthquake_record for each item in the list' do
+      list.each do |item|
+        expect(analyzer).to receive(:format_earthquake_record).with(item)
+      end
+
+      subject
+    end
+
+    it 'should print the formatted data' do
+      formatted_data = list.map(&:to_s) # from stubbed method
+      expect(analyzer).to receive(:puts).with(formatted_data)
+      subject
     end
   end
 end

@@ -21,6 +21,10 @@ class IquakeAnalyzer
       end
   end
 
+  def print_formatted_list(list)
+    puts list.map { |item| format_earthquake_record(item) }
+  end
+
   def format_earthquake_record(record)
     # time comes in miliseconds, Time.at requires seconds
     date = Time.at(record[:time] / 1000.0).utc
