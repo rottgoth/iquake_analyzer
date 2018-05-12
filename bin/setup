@@ -33,4 +33,7 @@ chdir APP_ROOT do
 
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
+
+  puts "\n== Fetching data from USGS service =="
+  system! 'bin/rake i_quake:fetch_latest_data'
 end

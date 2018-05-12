@@ -22,7 +22,15 @@ Data feed: [https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.
 
 ## Installation
 
-TBD
+- Clone the repo:
+```
+git clone git@github.com:rottgoth/iquake_analyzer.git
+```
+
+- Run setup script
+```
+./bin/setup
+```
 
 ## View results using Rake Task
 
