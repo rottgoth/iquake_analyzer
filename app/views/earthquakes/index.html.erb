@@ -1,0 +1,12 @@
+<h1 class="main-title"><%= @title %></h2>
+
+<table class="earthquakes-table table table-sm table-bordered">
+  <thead class="thead-dark">
+    <th>Date</th>
+    <th>Place</th>
+    <th>Magnitude</th>
+  </thead>
+  <tbody>
+    <%= render @earthquakes %>
+  </tbody>
+</table>

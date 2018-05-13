@@ -1,0 +1,5 @@
+<tr>
+  <td><%= earthquake.formatted_happened_at %></td>
+  <td><%= earthquake.place.gsub('CA', 'California') %></td>
+  <td>Magnitude: <%= earthquake.magnitude %></td>
+</tr>
