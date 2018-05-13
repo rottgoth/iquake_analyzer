@@ -66,4 +66,16 @@ RSpec.describe Earthquake, type: :model do
       expect(earthquake.errors.messages[:magnitude]).to include("is not a number")
     end
   end
+
+  describe '#formatted_happened_at' do
+    it 'should format happened_at with format: "%Y-%m-%dT%H:%M:%S%:z"' do
+      formatted_date = earthquake.happened_at.strftime("%Y-%m-%dT%H:%M:%S%:z")
+      expect(earthquake.formatted_happened_at).to eql(formatted_date)
+
+      earthquake.happened_at = 1.month.ago
+      new_date = earthquake.happened_at.strftime("%Y-%m-%dT%H:%M:%S%:z")
+      expect(earthquake.formatted_happened_at).to eql(new_date)
+    end
+  end
+
 end
