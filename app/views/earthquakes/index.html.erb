@@ -1,0 +1,21 @@
+<h1>iQuake Analyzer</h1>
+<h2><%= @title %></h2>
+
+<p>
+  <%= link_to "List California earthquakes in the past month", california_earthquakes_path %>
+</p>
+
+<p>
+  <%= link_to "List earthquakes in 3 top US cities in the past month", top_us_cities_earthquakes_path %>
+</p>
+
+<table class="earthquakes-table">
+  <thead>
+    <th>Date</th>
+    <th>Place</th>
+    <th>Magnitude</th>
+  </thead>
+  <tbody>
+    <%= render @earthquakes %>
+  </tbody>
+</table>
