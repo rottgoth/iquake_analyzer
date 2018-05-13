@@ -41,3 +41,13 @@ rake i_quake:list_california_earthquakes
 # List all earthquakes in the top 3 US states (by number of quakes), sorted by state then by decreasing magnitude
 rake i_quake:list_top_us_cities_earthquakes
 ```
+
+## View results in browser
+
+List all earthquakes in California in the past month, sorted by decreasing magnitude
+
+Navigate to: `http://localhost:3000/earthquakes/california_earthquakes`
+
+List all earthquakes in the top 3 US states (by number of quakes), sorted by state then by decreasing magnitude
+
+Navigate to: `http://localhost:3000/earthquakes/top_us_cities_earthquakes`
