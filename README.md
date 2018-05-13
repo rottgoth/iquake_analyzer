@@ -83,3 +83,19 @@ With more time these are a few of the things I would've liked to implement:
 - We can implement a Single Page Application using React.
 - With a react app, we can make the UI more dynamic, like adding filters, change sorting column and order.
 - We could implement websockets using ActionCable to update the client application if a new record has been created.
+
+## Development branches
+
+#### Branch: quake_http_client
+
+I started this branch to allow the simplest straight forward path to get the problem solved. By getting the data and process it so that the desired output can be formatted and created via a rake task.
+
+#### Branch: using_db
+
+That process takes a considerate amount of time since it has to load a huge dataset in memory everytime and perform the same processing of data and calculations. In order to make this process simpler and faster. In this branch, I've added the db with an earthquakes table and the attributes that I considered more useful.
+
+The main way to generate the output in this branch is via a rake task as well.
+
+#### Branch: html_view / master
+
+In this branch, I added the routes, controller and views so that this application could be deployed and the data accessed anywhere from a web browser.
