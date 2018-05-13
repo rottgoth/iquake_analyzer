@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  database: 'iquake_analyzer'
+  database: iquake_analyzer_prod
   pool: 5
   timeout: 5000
