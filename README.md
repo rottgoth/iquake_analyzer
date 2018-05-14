@@ -73,26 +73,26 @@ Navigate to: `https://iquake-analyzer.herokuapp.com/earthquakes/california_earth
 
 With more time these are a few of the things I would've liked to implement:
 
-- We are not discarding records for places with that don't list a city at the end after a comma. We can improve on that.
-- The list of top US cities doesn't validate the records are ONLY from US cities, somewhere in the list are listed cities in other countries.
+- We are not inserting records for places that don't list a city at the end after a comma. We can improve on that.
+- The list of top US cities doesn't validate that the records are ONLY from US cities. I found that somewhere in the list are cities from other countries.
 - The USGS list of earthquakes gets updates every 15 minutes. We can create a background job using ActiveJob to fetch and insert new records.
 - Once we have data from different months, the service should only query the data for the current month, instead of the whole dataset.
 - We can add caching to the UI.
-- The current implementation shows the entire list, we could pagination.
-- We can create the our own json API.
+- The current implementation shows the entire list, we could add pagination.
+- We can create our own json API.
 - We can implement a Single Page Application using React.
-- With a react app, we can make the UI more dynamic, like adding filters, change sorting column and order.
-- We could implement websockets using ActionCable to update the client application if a new record has been created.
+- With a React app, we can make the UI more dynamic, like adding filters and sorting controls for different columns.
+- We could implement websockets using ActionCable to broadcast to the client application if a new record has been created.
 
 ## Development branches
 
 #### Branch: quake_http_client
 
-I started this branch to allow the simplest straight forward path to get the problem solved. By getting the data and process it so that the desired output can be formatted and created via a rake task.
+I started this branch to allow the simplest, most straightforward path to get the problem solved. Its purpose is to get the data and process it so that the desired output can be formatted and printed via a rake task.
 
 #### Branch: using_db
 
-That process takes a considerate amount of time since it has to load a huge dataset in memory everytime and perform the same processing of data and calculations. In order to make this process simpler and faster. In this branch, I've added the db with an earthquakes table and the attributes that I considered more useful.
+That process takes a considerate amount of time, since it has to load a huge dataset in memory everytime and perform the same processing of data and calculations. In order to make this process simpler and faster, in this branch I've added the database with an earthquakes table with the attributes that I considered most useful.
 
 The main way to generate the output in this branch is via a rake task as well.
 
